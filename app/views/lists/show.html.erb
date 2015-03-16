@@ -9,7 +9,11 @@
     <li>
       <%= t.description %> |
       <%= link_to "Edit", edit_list_task_path(@list, t) %> |
-      <%= link_to "Delete", list_task_path(@list, t), :data => {:confirm => "Realllly?", :method => "delete"} %>
+      <%= link_to "Delete", list_task_path(@list, t), :data => {:confirm => "Realllly?", :method => "delete"} %> |
+      <%= form_for [@list, t] do |f| %>
+      <%= f.hidden_field :done, :value => true %>
+      <%= f.submit "Done?" %>
+      <% end %>
     </li>
     <% end %>
   </ul>
