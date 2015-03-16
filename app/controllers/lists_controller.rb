@@ -14,8 +14,8 @@ class ListsController < ApplicationController
   def create
     @list = List.new(params[:list])
     if @list.save
-      # flash: ("You created a new list! I'm so proud of you!")
-      redirect_to lists_path
+      flash[:notice] = "You created a " + @list.name + " list! I'm so proud of you!"
+      redirect_to list_path(@list)
     else
       render :new
     end
