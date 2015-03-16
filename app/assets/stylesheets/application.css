@@ -13,3 +13,19 @@
  *= require_tree .
  *= require_self
  */
+.done{
+  text-decoration: line-through;
+  float: right;
+}
+
+button{
+  float: left;
+  margin-right: 5px;
+  border-radius: 5%;
+  border: solid 1px maroon;
+  background-color: red;
+}
+
+li {
+  list-style-type: none;
+}

@@ -6,15 +6,23 @@
 
   <ul>
     <% @list.tasks.each do |t| %>
-    <li>
-      <%= t.description %> |
-      <%= link_to "Edit", edit_list_task_path(@list, t) %> |
-      <%= link_to "Delete", list_task_path(@list, t), :data => {:confirm => "Realllly?", :method => "delete"} %> |
-      <%= form_for [@list, t] do |f| %>
-      <%= f.hidden_field :done, :value => true %>
-      <%= f.submit "Done?" %>
+    <% if t.done == false %>
+      <div class="tasky">
+        <li>
+          <%= form_for [@list, t] do |f| %>
+            <%= f.hidden_field :done, :value => true %>
+            <button class="btn" type="submit">Done?</button>
+          <% end %>
+          <%= t.description %> |
+          <%= link_to "Edit", edit_list_task_path(@list, t) %> |
+          <%= link_to "Delete", list_task_path(@list, t), :data => {:confirm => "Realllly?", :method => "delete"} %>
+        </li>
+        <% else %>
+        <li class="done">
+          <%= t.description %>
+        </li>
+      </div>
       <% end %>
-    </li>
     <% end %>
   </ul>
 <% else %>
